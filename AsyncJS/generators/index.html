@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+
+<script>
+  window.onload = function(){
+
+    // generator sample
+    // function* gen(){
+    //   var x = yield 10;
+    //   console.log(x);
+    // }
+
+    // var myGen = gen();
+    // console.log(myGen.next());
+    // console.log(myGen.next(10));
+
+    genWrap(function*(){
+      
+      var users = yield $.get("../json_file/user.json");
+      console.log(users);
+      var fruits = yield $.get("../json_file/fruits.json");
+      console.log(fruits);
+      var books = yield $.get("../json_file/books.json");
+      console.log(books);
+
+    });
+
+    function genWrap(generator){
+      var gen = generator();
+
+      function handle(yielded){
+        if(!yielded.done){
+          yielded.value.then(function(data){
+            return handle(gen.next(data));
+          })
+        }
+      }
+
+      return handle(gen.next());
+    }
+
+    //check if asynchronous
+    console.log('test');
+  }  
+</script>
+  
+</body>
+</html>

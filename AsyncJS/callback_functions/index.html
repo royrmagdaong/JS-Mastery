@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  
+  <script>
+    window.onload = function(){
+
+      function handleError(jqXHR, textStatus, error){
+        console.log(error);
+      }
+
+      $.ajax({
+        type: "GET",
+        url: "../json_file/user.json",
+        success: cbUser,
+        error: handleError
+      });
+
+      function cbUser(data){
+        console.log('name: '+data[0].name+', specialization: '+data[0].specialization);
+
+        $.ajax({
+          type: "GET",
+          url: "../json_file/fruits.json",
+          success: cbFruits,
+          error: handleError
+        });
+      }
+      
+      function cbFruits(data){
+        console.log(data);
+
+        $.ajax({
+          type: "GET",
+          url: "https://rhonaldmusicandtutorial.firebaseio.com/posts.json",
+          success: function(data){
+            console.log(data);
+          },
+          error: handleError
+        });
+      }
+
+      //check for asynchrounous behavior
+      console.log('test');
+    }
+  </script>
+</body>
+</html>

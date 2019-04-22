@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+  
+  <script>
+    window.onload = function(){
+
+
+    // Using JQUERY
+    $.get("../json_file/user.json").then(function(users){
+      console.log(users);
+      return $.get("../json_file/fruits.json");
+    }).then(function(fruits){
+      console.log(fruits);
+      return $.get("../json_file/books.json");
+    }).then(function(books){
+      console.log(books[0].name);
+    })
+    
+
+
+
+
+    // PURE JAVASCRIPT
+
+    /*  
+      function get(url){
+        return new Promise(function(resolve, reject){
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", url, true);
+          xhttp.onload = function(){
+            if(xhttp.status == 200){
+              resolve(JSON.parse(xhttp.response));
+            } else {
+              reject(xhttp.statusText);
+            }
+          };
+          xhttp.onerror = function(){
+            reject(xhttp.statusText);
+          };
+          xhttp.send();
+        });
+      }
+
+
+      var promise = get("../json_file/user.json");
+      promise.then(function(users){
+        console.log(users);
+        return get("../json_file/fruits.json");
+      }).then(function(fruits){
+        console.log(fruits);
+        return get("../json_file/books.json");
+      }).then(function(books){
+        console.log(books);
+      }).catch(function(error){
+        console.log(error);
+      });
+
+      // check if asynchronous
+      console.log('test');
+    */
+
+
+
+    }  
+    
+  </script>
+</body>
+</html>

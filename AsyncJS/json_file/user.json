@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Roy",
+    "surname": "Magdaong",
+    "course": "BSIT",
+    "specialization":"Programming",
+    "city": "Taguig"
+  },
+  {
+    "name": "Jeffrey",
+    "surname": "Nieva",
+    "course": "BSIT",
+    "specialization":"Programming",
+    "city": "Taguig"
+  },
+  {
+    "name": "Daniel",
+    "surname": "Catalan",
+    "course": "BSIT",
+    "specialization":"Programming",
+    "city": "Pasig"
+  },
+  {
+    "name": "Tol",
+    "surname": "Tejano",
+    "course": "BSIT",
+    "specialization":"Programming",
+    "city": "Makati"
+  }
+]
